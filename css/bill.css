@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Leckerli+One&family=Open+Sans:wght@300&family=Oswald:wght@200;300;400;600&family=Playball&family=Raleway:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Leckerli+One&family=Lobster&family=Open+Sans:wght@300&family=Oswald:wght@200;300;400;600&family=Playball&family=Raleway:wght@800&display=swap'); 
+
+body{background-color: rgba(214,214,214);}
+
+.navbar .navbar-collapse{flex-grow: 0;}
+
+.navbar{padding: 0; margin: -14px 0;}
+
+.navbar-brand{display: flex;}
+
+.navbar .navbar-brand img{width: 120px;height: 100px;}
+
+.navbar .navbar-brand .brand{
+    margin-top: 30px;
+    font-size: 32px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #274f73;
+    font-family: 'Oswald', cursive;
+}
+.navbar ul
+
+.image{display: flex;justify-content: center;align-items: center;margin-top: 30px;}
+
+.email{display: flex;justify-content: center;}
+
+.log{
+margin-top: 40px;
+width: 500px;height: 450px;
+padding-bottom: 10px;
+border-radius: 9px;
+background-color: rgba(214,214,214);
+box-shadow: 5px 5px 10px #b6a9a9, -5px -5px 10px #fff;
+}
