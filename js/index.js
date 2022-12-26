@@ -21,13 +21,12 @@ let data = function(apiLink){
                     // let col = document.getElementById('col')
                     items += `<div class="col-lg-4 col-md-6" id='item' onclick='display(${i})' data-bs-toggle="modal" data-bs-target="#popUp">
                                         <div class="items text-center">
-                                            <input value='${i}' class='d-none' id='eleId'>
                                             <img class='w-75' src='${result[i].image}'>
-                                            <div class='layout'>
+                                            <div class='layout'>                                            </div>
+
                                                 <div class='inner-div'>
                                                 <span class='title'>${result[i].title}</span>
                                                 </div>
-                                            </div>
                                         </div>
                                     </div>
                                `;
