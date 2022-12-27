@@ -46,7 +46,7 @@ let data = function(apiLink){
                                     <p class='fs-4'>${arr[index].title}</p>
                                     <p>${arr[index].description}</p>
                                     <p> <span class='fw-bold'>Price </span>${arr[index].price} LE</p>
-                                    <button class='btn btn-outline-dark w-100'> 
+                                    <button class='btn btn-outline-dark w-100' id='addToCardCounter' onclick='itemToCardCounter();itemDatastoring(${arr[index]})'> 
                                         <p class='fw-light my-auto py-3'><i class="fa fa-cart-plus fs-5" aria-hidden="true"></i><span class='fs-6'> ADD TO CART</span></p>
                                     </button>
 
@@ -77,3 +77,6 @@ let data = function(apiLink){
         }
     };
     // Popup code
+
+
+
