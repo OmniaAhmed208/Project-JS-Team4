@@ -14,26 +14,45 @@ let data = function(apiLink){
                 myReq.send();
             })
         }
+
         data("https://fakestoreapi.com/products").then(
             (result)=> {
-                let items = ``;
-                for(let i=0; i < result.length ; i++){
-                    // let col = document.getElementById('col')
-                    items += `<div class="col-lg-4 col-md-6" id='item' onclick='display(${i})' data-bs-toggle="modal" data-bs-target="#popUp">
-                                        <div class="items text-center">
-                                            <img class='w-75' src='${result[i].image}'>
-                                            <div class='layout'>                                            </div>
+                // console.log(result);
+                let row = document.createElement('div');
+                row.className = 'row';
 
-                                                <div class='inner-div'>
-                                                <span class='title'>${result[i].title}</span>
-                                                </div>
-                                        </div>
-                                    </div>
-                               `;
-                    document.getElementById('rowDiv').innerHTML = items;
-               } 
-               arr = result;
-               }
+                div.appendChild(row);
+
+                for(let i=0; i < result.length ; i++){
+                    
+                    let col = document.createElement('div');
+                    col.className = 'col-lg-4 col-md-6';
+                    let items = document.createElement('div');
+                    items.className = 'items';
+
+                    let image = document.createElement('img');
+                    image.src = result[i].image;
+
+                    let layout = document.createElement('div');
+                    layout.className = 'layout';
+
+                    let inner =  document.createElement('div');
+                    inner.className = 'inner-div';
+
+                    let span = document.createElement('span');
+                    span.className = 'title';
+
+                    textSpan = document.createTextNode(result[i].title);
+
+                    row.appendChild(col);
+                    col.appendChild(items);
+                    items.appendChild(image);
+                    items.appendChild(layout);
+                    items.appendChild(inner);
+                    inner.appendChild(span);
+                    span.appendChild(textSpan);
+                }
+            }
         );
 
         // Display product in the modal

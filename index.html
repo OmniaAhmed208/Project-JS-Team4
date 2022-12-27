@@ -133,8 +133,14 @@
             <div class="info">
                 <div class="filter">
                     <form class="d-flex" role="search">
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                        <input class="btn" type="button" value="Search">
+                        <input list="searchOptions" id="searchK" class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        <datalist id="searchOptions">
+                            <option value="men's clothing"></option>
+                            <option value="jewelery"></option>
+                            <option value="electronics"></option>
+                            <option value="women's clothing"></option>
+                        </datalist>
+                        <input onclick="display()" class="btn" type="button" value="Search">
                         <span class="image">
                             <img src="img/cart.png"  id="addToCard" alt="cart">
                             <div class="counter" id="counter">0</div>
