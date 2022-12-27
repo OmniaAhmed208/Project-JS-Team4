@@ -16,45 +16,79 @@ let div = document.querySelector('.products .info');
             })
         }
 
-        data("https://fakestoreapi.com/products").then(
-            (result)=> {
-                // console.log(result);
-                let row = document.createElement('div');
-                row.className = 'row';
+        function display() {data("https://fakestoreapi.com/products").then(
+            (fullData)=> {
+                console.log(fullData);
+                var requestedData = fullData;
+                var productsSelected = [];
+                var searchKey = document.getElementById("searchK").value;
+                // console.log(searchKey)
+                var condition = searchKey == ''
+                // console.log(condition)
 
-                div.appendChild(row);
-
-                for(let i=0; i < result.length ; i++){
-                    
-                    let col = document.createElement('div');
-                    col.className = 'col-lg-4 col-md-6';
-                    let items = document.createElement('div');
-                    items.className = 'items';
-
-                    let image = document.createElement('img');
-                    image.src = result[i].image;
-
-                    let layout = document.createElement('div');
-                    layout.className = 'layout';
-
-                    let inner =  document.createElement('div');
-                    inner.className = 'inner-div';
-
-                    let span = document.createElement('span');
-                    span.className = 'title';
-
-                    textSpan = document.createTextNode(result[i].title);
-
-                    row.appendChild(col);
-                    col.appendChild(items);
-                    items.appendChild(image);
-                    items.appendChild(layout);
-                    items.appendChild(inner);
-                    inner.appendChild(span);
-                    span.appendChild(textSpan);
+                if (condition){
+                    productsSelected = requestedData;
+                    // console.log(productsSelected)
                 }
+
+                else if (!condition){
+                    productsSelected = requestedData.filter(element => element.category == searchKey)
+                    // console.log(productsSelected)
+                }
+                
+                // console.log(productsSelected);
+                products(productsSelected)
+                
+               }
+         )};
+         display()
+
+        function products(result){
+            let toBeRemoved = document.getElementsByClassName('pr')
+            console.log(toBeRemoved)
+            for(let i=0; i < toBeRemoved.length ; i++){
+                let current = toBeRemoved[0];
+                console.log(current)
+                // var y = current.childNodes() 
+                current.remove();    
+            } 
+            
+
+            let row = document.createElement('div');
+            row.className = 'row pr';
+
+            div.appendChild(row);
+
+            for(let i=0; i < result.length ; i++){
+                
+                let col = document.createElement('div');
+                col.className = 'col-lg-4 col-md-6';
+                let items = document.createElement('div');
+                items.className = 'items';
+
+                let image = document.createElement('img');
+                image.src = result[i].image;
+
+                let layout = document.createElement('div');
+                layout.className = 'layout';
+
+                let inner =  document.createElement('div');
+                inner.className = 'inner-div';
+
+                let span = document.createElement('span');
+                span.className = 'title';
+
+                textSpan = document.createTextNode(result[i].title);
+
+                row.appendChild(col);
+                col.appendChild(items);
+                items.appendChild(image);
+                items.appendChild(layout);
+                items.appendChild(inner);
+                inner.appendChild(span);
+                span.appendChild(textSpan);
             }
-        );
+        }
 
 
         // ============= scroll to top ===========
