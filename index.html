@@ -55,17 +55,24 @@
   </div>
 
    <!-- Card Modal -->
-  <div class="modal fade" id="popUp" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal fade" id="popUpCard" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
-        <div class="modal-header" id="cardHeader">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-header flex-column" id="cardHeader">
+          <div class="container row" id="cardHeaderStaticData">
+            <button type="button" class="btn-close d-flex" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h4 class="d-flex">Shopping Card</h4>
+          </div>
+          <div id="cardHeaderUserData">
+
+          </div>
         </div>
         <div class="modal-body" id="card">
           
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark w-100" id="checkoutBtn">Checkout</button>
+        <div class="modal-footer d-flex flex-row justify-content-between">
+          <button type="button" class="btn btn-outline-dark" id="clearBtn" onclick="clearCard()">Clear All</button>
+          <button type="button" class="btn btn-outline-dark" id="billBtn" onclick="window.location.href='bill.html';">Go to Bill Page</button>
         </div>
       </div>
     </div>
@@ -142,7 +149,7 @@
                         </datalist>
                         <input onclick="display()" class="btn" type="button" value="Search">
                         <span class="image">
-                            <img src="img/cart.png"  id="addToCard" alt="cart">
+                            <img src="img/cart.png"  id="addToCard" alt="cart" data-bs-toggle="modal" data-bs-target="#popUpCard">
                             <div class="counter" id="counter">0</div>
                         </span>
                     </form>

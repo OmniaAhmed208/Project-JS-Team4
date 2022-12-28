@@ -10,7 +10,7 @@
   border-radius: 6px;
 }
 
-.cardContainer{
+/* .cardContainer{
   height: 400px;
   background: #fff;
   box-shadow: 5px 5px 10px #b6a9a9, -5px -5px 10px #fff;
@@ -19,9 +19,21 @@
   z-index: 1;
   display: flex;
   display: none;
-  /* top: 100px; */
+  top: 100px;
+} */
+
+/* .cardFooter{
+  margin-bottom: 0;
+} */
+
+#card{
+  overflow: scroll;
 }
 
-.cardFooter{
-  margin-bottom: 0;
+.toCheckout:hover{
+  color: #4dcc68;
+}
+
+.toTrash:hover{
+  color: #cc4d5a;
 }
