@@ -33,3 +33,7 @@ border-radius: 9px;
 background-color: rgba(214,214,214);
 box-shadow: 5px 5px 10px #b6a9a9, -5px -5px 10px #fff;
 }
+  
+#bill{
+overflow: scroll;
+}
