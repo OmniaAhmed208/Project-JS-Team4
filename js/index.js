@@ -14,9 +14,30 @@ let data = function(apiLink){
                 myReq.send();
             })
         }
-        data("https://fakestoreapi.com/products").then(
-            (result)=> {
+
+
+        function displayData() {data("https://fakestoreapi.com/products").then(
+            (fullData)=> {
                 let items = ``;
+                var requestedData = fullData;
+                var result = [];
+                var searchKey = document.getElementById("searchK").value;
+                // console.log(searchKey)
+                var condition = searchKey == ''
+                // console.log(condition)
+
+                if (condition){
+                    result = requestedData;
+                    // console.log(result)
+                }
+
+                else if (!condition){
+                    result = requestedData.filter(element => element.category == searchKey)
+                    // console.log(result)
+                }
+                
+                // console.log(result);
+
                 for(let i=0; i < result.length ; i++){
                     // let col = document.getElementById('col')
                     items += `<div class="col-lg-4 col-md-6" id='item' onclick='display(${i})' data-bs-toggle="modal" data-bs-target="#popUp">
@@ -36,7 +57,8 @@ let data = function(apiLink){
                 } 
                arr = result;
                }
-        );
+        )};
+        displayData();
 
         // Display product in the modal
         let display = (index) => {

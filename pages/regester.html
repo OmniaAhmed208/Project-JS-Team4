@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+    <script src="https://apis.google.com/js/api:client.js"></script>
+    <title>Document</title>
+    <!---css-->
+    <link rel="stylesheet" href="/css/style.css ">
+    <!-- Boxicons CSS -->
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <section class="container formes">
+        <div class="containerr">
+            <img src="/img/log.png" alt="photo desigin" >
+          </div>
+            <div class="form login">
+                <div class="form-content">
+                    <header>Sign Up</header>
+                    <form action="/index.html"  class="formt" >
+                        
+                        <div class="filed input-fild ">
+                            <input type="text" class="input user "  placeholder="Fristname    Lastname"    id="name"  required>
+                        </div>
+                        <div  class="use-fild">
+                            <span class="error">
+                                <i class='bx bx-error-circle er ' style="color:red ;" ></i>
+                                <p class="error-text" >Please enter a Valid Name</p>
+                            </span>
+                        </div>
+                        <div class="filed input-fild ">
+                            <input type="text" class="input em "  placeholder="Email"   id="mail"   required>
+                        </div>
+                        <div  class="em-fild ">
+                        <span class="error">
+                            <i class='bx bx-error-circle er ' style="color:red ;" ></i>
+                            <p class="error-text" >Please enter  a Valid Email </p>
+                        </span>
+                    </div>
+                    
+                        <div class="filed input-fild">
+                            <input type="password" class="password pw "  placeholder="password" id="password" required >
+                            <i class='bx bx-hide eye-icon'></i>
+                        </div>
+                        <div  class="pass-fild">
+                        <span class="error">
+                            <i class='bx bx-error-circle er ' style="color:red ;" ></i>
+                            <p class="error-text" >Please enter at least 8 characters with number,symbol,small and capital letter </p>
+                        </span>
+                    </div>
+                   
+                        <div class="filed input-fild ">
+                            <input type="password" class="password cpw "  placeholder=" Confirem password" minlength="8" maxlength="20"  id="cpass"  required >
+                            <!-- <i class='bx bx-hide eye-icon '></i> -->
+                        </div>
+                         <div class="  cpass-fild" >
+                        <span class="error">
+                            <i class='bx bx-error-circle er ' style="color:red ;" ></i>
+                            <p class="error-text" >Password Don't Match</p>
+                        </span>
+                    </div>
+                        <div class="filed button-fild">
+                            <input type="submit" value="Sign Up" class="butn" onclick="store();"  >
+                            <div class="form-link">
+                                <span>Have an Account?<a href="/pages/login.html" class="  link signup-link" >Login Here</a></span>
+                            </div>
+                        </div>
+                            <div class="line"></div>
+                            <div class="mdia-option">
+                                <a href="javascript:void(0);" onclick="fbLogin();" class="filed facebook">
+                                    <i class='bx bxl-facebook facebook-icon ' style='color:#0171d3'  ></i>
+                                <span>Login With Facebook</span>
+                                </a>
+                            </div>
+                            <div class="mdia-option">
+                                <a href="#" class="googelsig" style="text-decoration: none;color: #fff;"  >
+                                    <div id="gSignInWrapper">
+                                    <div id="customBtn" class="customGPlusSignIn filed googel ">
+                                    <img src="/img/google_PNG19635.png" alt="" class="googel-img">
+                                    <!-- <i class='bx bxl-gmail facebook-icon ' style='color:#ff2626'  ></i> -->
+                                <span>Login With Gmail</span>
+                                </a>
+                            </div>
+                        </div>
+                            </div>
+                    </form>
+                </div>
+            </div>  
+    </section>
+<script src="/js/rgvaldation.js" ></script>
+<script src="/js/localstorage.js" ></script>
+<script src="/js/facebook.js" ></script>
+<script>startApp();</script>
+</body>
+</html>
