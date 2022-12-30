@@ -41,13 +41,20 @@ function getStorage(){
     var umail = document.getElementById('usermail');
     var upass = document.getElementById('userPw');
     var userRemember = document.getElementById("check");
-     if(umail.value !== storedEmail && upass.value !== storedpass) {
+     if(umail.value !== storedEmail  ) {
         // alert ("login falid");
         erremf.classList.add("invalid");
+        event.preventDefault();
+        return false ;
+    }
+
+   else if (upass.value !== storedpass){
         errpwf.classList.add("invalid");
         event.preventDefault();
         return false ;
-       
+    }
+    else{
+        console.log("ture");
     }
         // alert('login in passed'); 
         erremf.classList.remove("invalid");
@@ -55,3 +62,19 @@ function getStorage(){
         return true ;
     }
 
+// forget pass
+    function forgetpass() {
+        var localmail =localStorage.getItem('Email');
+        var forgetpass = document.getElementById('fpass');
+     var fmail =  document.getElementById('userfmail');
+     var fmaileror = document.querySelector('.error-fmail');
+     if(fmail.value != localmail){
+        fmaileror.classList.add("invalid");
+     }
+     else{
+        fmaileror.classList.remove("invalid");
+        document.querySelector('.Forget').style.display ="block";
+        document.getElementById("mySubmit").value = "Change Password"; 
+        localStorage.setItem('password', forgetpass.value);
+     }
+    }

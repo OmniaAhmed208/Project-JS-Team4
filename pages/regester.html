@@ -4,19 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+    <script src="https://apis.google.com/js/api:client.js"></script>
     <title>Document</title>
     <!---css-->
-    <link rel="stylesheet" href="/Project-JS-Team4/css/style.css ">
+    <link rel="stylesheet" href="/css/style.css ">
     <!-- Boxicons CSS -->
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <section class="container formes">
-        <div class="sub-container"> 
+        <div class="containerr">
+            <img src="/img/log.png" alt="photo desigin" >
+          </div>
             <div class="form login">
                 <div class="form-content">
                     <header>Sign Up</header>
-                    <form action="/Project-JS-Team4/index.html"  class="formt" >
+                    <form action="/index.html"  class="formt" >
                         
                         <div class="filed input-fild ">
                             <input type="text" class="input user "  placeholder="Fristname    Lastname"    id="name"  required>
@@ -61,7 +65,7 @@
                         <div class="filed button-fild">
                             <input type="submit" value="Sign Up" class="butn" onclick="store();"  >
                             <div class="form-link">
-                                <span>Have an Account?<a href="login.html" class="  link signup-link" >Login Here</a></span>
+                                <span>Have an Account?<a href="/pages/login.html" class="  link signup-link" >Login Here</a></span>
                             </div>
                         </div>
                             <div class="line"></div>
@@ -72,19 +76,23 @@
                                 </a>
                             </div>
                             <div class="mdia-option">
-                                <a href="#" class="filed googel">
-                                    <img src="/Project-JS-Team4/img/google_PNG19635.png" alt="" class="googel-img">
+                                <a href="#" class="googelsig" style="text-decoration: none;color: #fff;"  >
+                                    <div id="gSignInWrapper">
+                                    <div id="customBtn" class="customGPlusSignIn filed googel ">
+                                    <img src="/img/google_PNG19635.png" alt="" class="googel-img">
                                     <!-- <i class='bx bxl-gmail facebook-icon ' style='color:#ff2626'  ></i> -->
                                 <span>Login With Gmail</span>
                                 </a>
                             </div>
+                        </div>
+                            </div>
                     </form>
                 </div>
-            </div>
-        </div>     
+            </div>  
     </section>
-<script src="/Project-JS-Team4/js/rgvaldation.js" ></script>
-<script src="/Project-JS-Team4/js/localstorage.js" ></script>
-<script src="/Project-JS-Team4/js/facebook.js" ></script>
+<script src="/js/rgvaldation.js" ></script>
+<script src="/js/localstorage.js" ></script>
+<script src="/js/facebook.js" ></script>
+<script>startApp();</script>
 </body>
 </html>

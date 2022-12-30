@@ -4,33 +4,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+    <script src="https://apis.google.com/js/api:client.js"></script>
     <title>Document</title>
     <!---css-->
-    <link rel="stylesheet" href="/Project-JS-Team4/css/style.css ">
+    <link rel="stylesheet" href="/css/style.css ">
+    <!-- <link rel="stylesheet" href="/css/bill.css"> -->
+    <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
     <!-- Boxicons CSS -->
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
+        <!-- <nav>
+            <a href="/index.html" class="brand" ><img src="/img/logo.png" alt=""   width="120px" height="100px" ><span >spotify</span></a>
+        </nav> -->
     <section class="container formes">
-        <div class="sub-container"> 
+            <div class="containerr">
+              <img src="/img/log.png" alt="photo desigin" >
+            </div>
             <div class="form login">
                 <div class="form-content">
                     <header>Login</header>
-                    <form action="/Project-JS-Team4/index.html"  class="formt" >
-                        <div class="error-contain" >
+                    <form action="/index.html"  class="formt" >
+                       
                         <div class="filed input-fild">
                             <input type="email" class="input"  placeholder="Email"   id="usermail" required  >
                         </div>
+                        <div class="error-contain" >
                         <span class="error">
                             <i class='bx bx-error-circle er ' style="color:red ;" ></i>
                             <p class="error-text" >Please enter  a Valid Email </p>
                         </span>
                     </div>
-                    <div class="error-pass" >
+                    
                         <div class="filed input-fild">
                             <input type="password" class="password"  placeholder="password" minlength="8" maxlength="20" required  id="userPw" >
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
+                        <div class="error-pass" >
                         <span class="error">
                             <i class='bx bx-error-circle er ' style="color:red ;" ></i>
                             <p class="error-text" >Please enter  a Valid Password</p>
@@ -40,12 +51,12 @@
                             <input type="checkbox" id="check"  checked > <label for="check">Remember Me</label>
                         </div>
                          <div class="form-link">
-                            <a href="#" class="forgt-bass" >Forget password?</a>
+                            <a href="/pages/forget.html" class="forgt-bass" >Forget password?</a>
                         </div>
                         <div class="filed button-fild">
                             <input type="submit" value="Login" class="butn"  onclick="getStorage();" >
                             <div class="form-link">
-                                <span>Don't Have an Account?<a href="regester.html" class="signup-link" >Regester Here</a></span>
+                                <span>Don't Have an Account?<a href="/pages/regester.html" class="signup-link" >Regester Here</a></span>
                             </div>
                         </div>
                             <div class="line"></div>
@@ -56,18 +67,22 @@
                                 </a>
                             </div>
                             <div class="mdia-option">
-                                <a href="#" class="filed googel">
-                                    <img src="/Project-JS-Team4/img/google_PNG19635.png" alt="" class="googel-img">
+                                <a href="#" style="text-decoration: none;color: #fff;">
+                                    <div id="gSignInWrapper">
+                                    <div id="customBtn" class="customGPlusSignIn filed googel ">
+                                    <img src="/img/google_PNG19635.png" alt="" class="googel-img">
                                     <!-- <i class='bx bxl-gmail facebook-icon ' style='color:#ff2626'  ></i> -->
                                 <span>Login With Gmail</span>
                                 </a>
                             </div>
+                        </div>
+                            </div>
                     </form>
-                </div>
-            </div>
+               </div>
         </div>
     </section>
-    <script src="/Project-JS-Team4/js/localstorage.js" ></script>
-    <script src="/Project-JS-Team4/js/facebook.js" ></script>
+    <script src="/js/localstorage.js" ></script>
+    <script src="/js/facebook.js" ></script>
+    <script>startApp();</script>
 </body>
 </html>
