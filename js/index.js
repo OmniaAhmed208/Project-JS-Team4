@@ -252,7 +252,6 @@ function plusItem(id){
   value = isNaN(value) ? 0 : value;
   value++;
   document.getElementById(`itemQty_${id}`).value = value;
-  priceCalc();
 }
 // decrease the number of items for the same product
 function minusItem(id){
