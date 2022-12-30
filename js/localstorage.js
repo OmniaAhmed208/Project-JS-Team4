@@ -64,8 +64,9 @@ function getStorage(){
 
 // forget pass
     function forgetpass() {
+        var redirect = false;
         var localmail =localStorage.getItem('Email');
-        var forgetpass = document.getElementById('fpass');
+        var forgetpas = document.getElementById('fpass');
      var fmail =  document.getElementById('userfmail');
      var fmaileror = document.querySelector('.error-fmail');
      if(fmail.value != localmail){
@@ -75,6 +76,24 @@ function getStorage(){
         fmaileror.classList.remove("invalid");
         document.querySelector('.Forget').style.display ="block";
         document.getElementById("mySubmit").value = "Change Password"; 
-        localStorage.setItem('password', forgetpass.value);
+        localStorage.setItem('password', forgetpas.value);
+        // if(forgetpas.value != "" ){
+        //     popopen();
+        //       redirect=true ; 
+        // }
+       
      }
+        // if(redirect){
+        //     setTimeout(  function () {  window.location.href="/index.html"} , 2000);
+        // }
+
     }
+
+ // popup fun
+//  function popopen(){
+//     document.getElementById('pop').style.display="block";
+    
+// }
+// function popclose(){
+//     document.getElementById('pop').style.display="none" ;
+// }
