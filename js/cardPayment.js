@@ -7,9 +7,9 @@ let container = document.querySelector('.products .info');
 var myStorage = sessionStorage;
 
 // catching "counter" element
-// try { myStorage.clickcoun == null } catch(e) { console.log(e); }
-document.getElementById("counter").innerHTML = myStorage.clickcount;
-
+if (document.getElementById("counter")) {
+	document.getElementById("counter").innerHTML = myStorage.clickcount;
+}
 // counting every item added to card
 function itemToCardCounter() {
   if (typeof(Storage) !== "undefined") {
@@ -24,17 +24,6 @@ function itemToCardCounter() {
   }
   return myStorage.clickcount;
 }
-/* // catching every "Add to Card" button attached to their products   // this is archived
-container.addEventListener("click", function(e){
-  if(e.target.classList.contains("addToCardCounter")){
-    var addCounter = document.querySelectorAll(".addToCardCounter");
-    for(let i = 0; i < addCounter.length; i++){
-      addCounter[i].addEventListener("click", itemToCardCounter);
-    }
-  }
-}); */
-
-
 
 // subtracting every item deleted from card
 function delItemFromCardCounter(){
@@ -44,24 +33,18 @@ function delItemFromCardCounter(){
   }
   document.getElementById("counter").innerHTML = myStorage.clickcount;
 }
-/* // catching every "Delete from Card" button attached to their products on shopping card   // this is archived
-container.addEventListener("click", function(e){
-  if(e.target.classList.contains("addToCardCounter")){
-    var delCounter = document.querySelectorAll(".delFromCardCounter");
-    for(let i = 0; i < delCounter.length; i++){
-      delCounter[i].addEventListener("click", delItemFromCard);
-    }
-  }
-}); */
 
 // reset counter by >>Create Account<< button, but now we will do it by "loginBtn" button
-document.getElementById("loginBtn").onclick = function(){
+function resetCounter(){
   if (myStorage.clickcount) {
-	  myStorage.removeItem("clickcount");
+	  myStorage.clickcount = 0;
   }
   document.getElementById("counter").innerHTML = 0;
 }
-
+if (document.getElementById("loginBtn")) {
+	document.getElementById("loginBtn").onclick = resetCounter;
+	window.onload = resetCounter;
+}
 
         // ============= Display counted items in the card ===========
 
@@ -76,7 +59,7 @@ function itemDatastoring(itemIndex){
 // Add user name and email to card header after login is accepted
 let displayUserData = () => {
   let cardHeaderContent = ``;
-  let cardHeader = document.getElementById('cardHeaderUserData');
+  let cardHeader = document.querySelector('.cardHeaderUserData, .billHeaderUserData');
   cardHeaderContent = `<div class='container flex-row'>
                           <span class='d-flex'>Card Holder: ${localStorage.name}</span>
                           <span class='d-flex'>E-mail: ${localStorage.email}</span>
@@ -95,31 +78,23 @@ displayCard = () => {
   // let cardBody = ``;
   let card = document.getElementById('card');
   cardBody += `<div class='container row justify-content-around mb-4' data-id='${itemDataArr.id}'>
-                <img class='col-4' src='${itemDataArr.image}'>
+                <img class='col-4' id='image' src='${itemDataArr.image}'>
                 <div class='col-7'>
                   <p class='fs-4' id='title'>${itemDataArr.title}</p>
                   <div class="d-flex flex-row justify-content-around">
                     <p> <span class='fw-bold'>Price </span><span id='price'>${itemDataArr.price} LE </span></p>
                     <div class="d-flex flex-row justify-content-between">
-                      <i class="toCheckout btn" onclick="addItemToBill(${itemDataArr.id})">Confirm</i>
+                      <i class="toCheckout btn" id="toCheckout" onclick="addItemToBill(${itemDataArr.id}); displayBill();">Confirm</i>
                       <i class="toTrash btn" id="toTrash" onclick="delItemFromCardCounter(); delItemFromCard(${itemDataArr.id});">Delete</i>
                     </div>
                   </div>
                 </div>
               </div>`;
   card.innerHTML = cardBody;
-  // For localstorage ============================
+  //  // For localstorage
   // cardArr.push(cardBody);
   // localStorage.setItem('itemsInCard', cardArr);
   return cardBody;
-}
-
-// Add item to bill page
-function addItemToBill(eleId){
-  let itemContainer = document.querySelector(`[data-id="${eleId}"]`);
-  var itemTitle = itemContainer.querySelector("#title").innerHTML;
-  var itemPrice = itemContainer.querySelector("#price").innerHTML;
-  return itemTitle, itemPrice;
 }
 
 // Delete item from shopping card
@@ -132,12 +107,181 @@ function delItemFromCard(eleId){
 function clearCard(){
   card.innerHTML = '';
   return;
-  // It worked too   ===================================
-  // let clearBtn = document.getElementById("clearBtn");
-  // clearBtn.onclick = () => {
-  //   const myNode = document.getElementById("card");
-  //   while (myNode.lastElementChild) {
-  //     myNode.removeChild(myNode.lastElementChild);
-  //   }
-  // }
 }
+
+        // ============= Filling Bill ===========
+
+// Add item to bill page
+var itemContainer, itemImg, itemTitle, itemPrice;
+// var itemIdArr = [];
+// localStorage.setItem('itemIdArr', '');
+localStorage.setItem('itemImageInBill', '');
+localStorage.setItem('itemTitleInBill', '');
+localStorage.setItem('itemPriceInBill', '');
+
+function addItemToBill(eleId){
+  itemContainer = document.querySelector(`[data-id="${eleId}"]`);
+  itemImg = itemContainer.querySelector("#image").src;
+  itemTitle = itemContainer.querySelector("#title").innerHTML;
+  itemPrice = itemContainer.querySelector("#price").innerHTML;
+  // itemIdArr.push(eleId);
+  // localStorage.itemIdArr = itemIdArr;
+  localStorage.itemImageInBill = itemImg;
+  localStorage.itemTitleInBill = itemTitle;
+  localStorage.itemPriceInBill = itemPrice;
+  console.log(localStorage.itemImageInBill, localStorage.itemTitleInBill, localStorage.itemPriceInBill);
+  return itemImg, itemTitle, itemPrice;
+}
+
+var cardArr = [];
+var bill = document.getElementById('tbody');
+// localStorage.getItem('itemsInCard', '');
+// if (window.onload) {
+//   localStorage.itemsInCard = '';
+// }
+
+// Adding items data to bill table after clicking "Confirm" button in the card popup
+let billBody = ``;
+displayBill = () => {
+  if(!itemContainer || !loginAccepted){return;}
+  // let billBody = ``;
+  billBody += `<tr class='billRecord'>
+                <td class='itemCell'>
+                  <img class='itemImgSm' src='${itemImg}'>
+                  <span class='itemTitle'>${itemTitle}</span>
+                </td>
+                <td class='unitPriceCell'>${itemPrice}</td>
+                <td class='qtyCell'>
+                  <span id='itemQty>1</span>
+                  <div>
+                    <button id='plus' onclick="plusItem()">&plus;</button>
+                    <button id='minus' onclick="minusItem()">&minus;</button>
+                  </div>
+                </td>
+                <td class='priceCell'></td>
+              </tr>`;
+  // cardArr.push(billBody);
+  // localStorage.itemsInCard = itemIdArr;
+  if(bill){
+    // for (let i = 0; i < localStorage.itemsInCard.length; i++) {
+    //   bill.innerHTML += localStorage.itemsInCard[i];
+    // }
+    bill.innerHTML = billBody;
+  }
+  // // For localstorage
+  // localStorage.itemsInCard = JSON.stringify(cardArr || []);
+
+  return billBody, bill, cardArr;
+}
+// if (window.onload) {
+//   displayBill();
+// }
+
+// // Table cells equations  // //
+
+// increase the number of items for the same product
+function plusItem(){
+  let item = document.getElementById("itemQty");
+  item.innerHTML += 1;
+  return item.innerHTML;
+}
+
+// decrease the number of items for the same product
+function minusItem(){
+  let item = document.getElementById("itemQty");
+  item.innerHTML -= 1;
+  return item.innerHTML;
+}
+
+// price calculation after adding item number (itemQty)
+function priceCalc(){
+  let priceCell = document.getElementById("priceCell"); 
+  for(let i = 0; i < cardArr.length; i++){
+    let tableRow = cardArr[i];
+    let unitPriceCell = tableRow.cells[1].innerHTML;
+    let itemQty = tableRow.cells[2].ElementChild.innerHTML;
+    var priceCellValue = unitPriceCell * itemQty;
+  }
+  if (priceCellValue) {
+	priceCell.innerHTML = priceCellValue;
+}
+  return priceCellValue;
+}
+if(cardArr){
+  priceCalc();
+}
+
+// Total price Calculations
+function totalPriceEqu(){
+  var total = document.getElementById("totalPrice");
+  let totalVal = 0;
+  for(var i = 0; i < bill.rows.legnth; i++){
+    totalVal += Number(bill.rows[i].cells[3].innerHTML)
+  }
+  total.innerHTML = totalVal + ' LE';
+  return total.innerHTML;
+}
+if(bill){
+  totalPriceEqu();
+}
+
+function checkoutReceipt(){
+  alert(`Hello mr/mrs ${localStorage.name} \n
+         Total items number: ${cardArr.length} \n
+         Cash: ${total.innerHTML} \n
+         Thank you for your time!
+      `);
+      
+  localStorage.itemIdArr = '';
+}
+
+// // Add item to bill page
+// var itemContainer, itemImg, itemTitle, itemPrice;
+// var itemIdArr = [];
+
+// function addItemToBill(eleId){
+//   itemContainer = document.querySelector(`[data-id="${eleId}"]`);
+// //   itemContainer = document.querySelector(`#id${eleId}`);
+//   for(let i = 0; i < arr.length; i++){
+//     if(eleId === arr[i].id){
+//         itemImg = arr[i].image;
+//         itemTitle = arr[i].title;
+//         itemPrice = arr[i].price;
+//     }else{
+//         return;
+//     }
+//     itemIdArr.push(arr[i].id);
+//   }
+//   console.log(itemIdArr);
+//   return itemImg, itemTitle, itemPrice, itemIdArr;
+// }
+
+// var cardArr = [];
+// var bill = document.querySelector('#tbody');
+
+// // Adding items data to bill table after clicking "Confirm" button in the card popup
+// let billBody = ``;
+// displayBill = () => {
+//   if(!itemContainer || !loginAccepted){return;}
+//   for (let itemId in itemIdArr) {
+//     billBody += `<tr class='billRecord'>
+//                   <td class='itemCell'>
+//                     <img class='itemImgSm' src='${itemImg}'>
+//                     <span class='itemTitle'>${itemTitle}</span>
+//                   </td>
+//                   <td class='unitPriceCell'>${itemPrice}</td>
+//                   <td class='qtyCell'>
+//                     <span id='itemQty>1</span>
+//                     <div>
+//                       <button id='plus' onclick="plusItem()">&plus;</button>
+//                       <button id='minus' onclick="minusItem()">&minus;</button>
+//                     </div>
+//                   </td>
+//                   <td class='priceCell'></td>
+//                 </tr>`;
+//     if(bill){
+//       bill.innerHTML += billBody;
+//     }
+//   }
+//   return billBody, bill, cardArr;
+// }

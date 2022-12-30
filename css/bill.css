@@ -26,14 +26,101 @@ body{background-color: rgba(214,214,214);}
 .email{display: flex;justify-content: center;}
 
 .log{
-margin-top: 40px;
-width: 500px;height: 450px;
-padding-bottom: 10px;
-border-radius: 9px;
-background-color: rgba(214,214,214);
-box-shadow: 5px 5px 10px #b6a9a9, -5px -5px 10px #fff;
+    margin-top: 40px;
+    width: 500px; height: 450px;
+    padding-bottom: 10px;
+    border-radius: 9px;
+    background-color: rgba(214,214,214);
+    box-shadow: 5px 5px 10px #b6a9a9, -5px -5px 10px #fff;
+    position: relative;
 }
-  
+
+#billHeader{
+    position: absolute;
+    width: 100%;
+    top: 0;
+}
+
 #bill{
-overflow: scroll;
+    position: absolute;
+    height: 62%;
+    max-height: 300px;
+    width: 100%;
+    top:100px;
+}
+
+#tbody{
+    position: absolute;
+    height: 70%;
+    width: 100%;
+    overflow: scroll;
+}
+
+.itemImgSm{
+    width: 50px;
+    height: 50px;
+}
+
+#plus{
+    background: none;
+    border: none;
+}
+#plus:hover{
+    color: #4dcc68;
+}
+
+#minus{
+    background: none;
+    border: none;
+}
+#minus:hover{
+    color: #cc4d5a;
+}
+
+.tfoot{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+#billFooter{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+#qtyCell {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.incDec {
+    display: inline-block;
+    border: 1px solid #ddd;
+    margin: 0px;
+    margin-top: -30px;
+    width: 20px;
+    height: 10px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 11px 0;
+    background: #eee;
+}
+
+.itemQty {
+    text-align: center;
+    border: none;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin: 0px;
+    width: 40px;
+    height: 25px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

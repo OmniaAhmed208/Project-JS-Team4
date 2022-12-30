@@ -26,23 +26,23 @@
             </div>
             <div class="col-lg email">
                 <div class="log">
-                    <div class="container flex-column p-3" id="cardHeader">
-                        <div class="container row" id="cardHeaderStaticData">
-                          <h2 class="d-flex">Checkout Card</h2>
+                    <div class="container flex-column p-3" id="billHeader">
+                        <div class="container row" id="billHeaderStaticData">
+                          <h2 class="d-flex">Checkout Bill</h2>
                         </div>
-                        <div id="cardHeaderUserData">
+                        <div class="billHeaderUserData">
               
                         </div>
-                      </div>
-                      <div class="bill-body" id="bill">
+                    </div>
+                    <div class="bill-body" id="bill">
                         <table class="table table-hover table-responsive">
                             <thead class="thead" scope="row">
-                                <td scope="col">Item</td>
-                                <td scope="col">Unit Price</td>
-                                <td scope="col">Qty</td>
-                                <td scope="col">Price</td>
+                                <td scope="col-6">Item</td>
+                                <td scope="col-2">Unit Price</td>
+                                <td scope="col-2">Qty</td>
+                                <td scope="col-2">Price</td>
                             </thead>
-                            <tbody class="tbody" scope="row">
+                            <tbody class="tbody" scope="row" id="tbody">
 
                             </tbody>
                             <tfoot class="tfoot" scope="row">
@@ -50,11 +50,11 @@
                                 <td id="totalPrice"></td>
                             </tfoot>
                         </table>
-                      </div>
-                      <div class="conainerFooter d-flex flex-row justify-content-between">
-                        <button type="button" class="btn btn-outline-dark m-3" id="clearBtn" onclick="window.location.href='index.html';">Go back</button>
-                        <button type="button" class="btn btn-outline-dark m-3" id="billBtn" onclick="checkout()">Checkout</button>
-                      </div>
+                    </div>
+                    <div class="conainer d-flex flex-row justify-content-between" id="billFooter">
+                        <button type="button" class="btn btn-outline-dark m-3" id="goBackBtn" onclick="window.location.href='index.html';">Go back</button>
+                        <button type="button" class="btn btn-outline-dark m-3" id="checkoutBtn" onclick="checkoutReceipt()">Checkout</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -114,7 +114,7 @@
     <script src="js/bootstrap.min.js"></script>  
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
-    <!-- <script src="js/index.js"></script>   -->
-    <script src="js/cardPayment.js"></script>
+    <script src="js/index.js"></script>  
+    <!-- <script src="js/cardPayment.js"></script> -->
 </body>
 </html>
