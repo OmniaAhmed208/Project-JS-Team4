@@ -207,10 +207,11 @@ let billBody = ``;
 function displayBill(){
   if(!itemDataArr || !JSON.parse(localStorage.itemDataArr) || !loginAccepted){return;}
   for (let i = 0; i < JSON.parse(localStorage.itemDataArr).length; i++) {
-    billBody = `<tr class='billRecord w-100'>
+    billBody = `<tr>
+                  <span class='itemTitle'><strong>Item ${i}:</strong><small>${JSON.parse(localStorage.itemDataArr)[i].title}.</small></span>
+                  </tr><tr class='billRecord w-100'>
                   <td class='col' id='itemCell'>
                     <img class='itemImgSm' src='${JSON.parse(localStorage.itemDataArr)[i].image}'>
-                    <span class='itemTitle'><small>${JSON.parse(localStorage.itemDataArr)[i].title}</small></span>
                   </td>
                   <td class='col' id='unitPriceCell_${i}'>${JSON.parse(localStorage.itemDataArr)[i].price}</td>
                   <td class='col' id='qtyCell'>
