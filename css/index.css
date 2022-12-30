@@ -253,6 +253,11 @@ body{background-color: rgba(214,214,214);}
 
 .footer .img img{width: 100px;height: 100px;}
 
+
+
+/* modal popup */
+.added{background:#cc4d5a; border:0; color:#fff}
+
 /* ======== collection ========== */
 .service h2,
 .products h2{
@@ -274,23 +279,3 @@ body{background-color: rgba(214,214,214);}
     margin-right: 10px;
 }
 .about .icons i{background-color: #cc4d5a;}
-
-
-/* ===== media Query========== */
-@media (max-width:992px) {
-    .about .info h1 {font-size: 70px;padding: 35px 60px 50px;}
-    .service .info{margin-bottom: 25px;}
-}
-@media (max-width:767px) {
-    .about .info p{width: 100%;}
-    .products .info{ margin: auto;width: 70%;}
-    .products .filter form input[type='search'] {width:100%}
-}
-@media (max-width: 576px){
-    .about .info h1 {font-size: 65px;padding: 35px 60px 25px;}
-    .products .info .items{width: 100%;}
-}
-@media (min-width:992px) and (max-width:1200px) {
-    .footer .contact input[type='email']{width: 80%;}
-    .footer .contact input[type='button']{margin: 6px 0 0;width: 80%;}
-}

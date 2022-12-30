@@ -1,0 +1,67 @@
+/* ===== media Query========== */
+@media (max-width:992px) {
+    .navbar-collapse{margin-left: 40px;}
+    .about .info h1 {font-size: 70px;padding: 35px 60px 50px;}
+    .service .info{margin-bottom: 25px;}
+    .scroll{right: 60px;}
+}
+
+@media (max-width:767px) {
+    .about .info p{width: 100%;}
+    .products .info{ margin: auto;width: 70%;}
+    .products .filter form input[type='search'] {width:100%}
+}
+
+@media (max-width: 576px){
+    .navbar .navbar-brand img {width: 100px;height: 80px;}
+    .navbar .navbar-brand .brand {margin-top: 25px;font-size: 26px;}
+    .navbar-toggler{
+        width: 50px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        margin: 15px 40px 0 0;
+    }
+
+    .about {margin: 25px 25px;}
+    .about .info{padding-top: 10px;}
+    .about .info h1{font-size: 40px;padding: 60px 40px 25px;}
+    .about .info p{padding: 10px 20px;}
+    .about .icons {padding: 10px 0 0 20px;}
+
+    .service .info {margin-bottom: 25px;margin: 0 40px 30px;}
+
+    .products h2{font-size: 60px;}
+    .products .info{width: 90%;}
+    .products .info .items{width: 100%;}
+    .products .filter form{flex-direction: column;}
+    .products .filter form .btn{margin: 10px 0 22px;}
+    .products .filter form span{margin-left: 0;}
+    
+    .scroll {right: 20px}
+    
+    .footer .contact h4{padding: 20px 0 20px;}
+    .footer .send{display: flex;flex-direction: column;width: 100%;align-items: center;}
+    .footer .send input{width: 100%;}
+    .footer .send input[type='button']{margin-top: 10px;}
+}
+
+@media (min-width:992px) and (max-width:1200px) {
+    .footer .contact input[type='email']{width: 80%;}
+    .footer .contact input[type='button']{margin: 6px 0 0;width: 80%;}
+}
+
+@media (max-width:280px) {
+    .navbar .navbar-brand img {width: 80px;height: 60px;margin-top: 20px;}
+    .navbar .navbar-brand .brand {margin-top: 40px;font-size: 18px;}
+    .navbar-toggler{margin-right: -25px;}
+    
+    .about .info h1 {font-size: 35px;padding: 50px 20px 20px;}
+    .about .info p {font-size: 15px;padding: 10px 10px;}
+    .about .icons {padding: 15px 0 0 10px;}
+    
+    .service h2,.products h2{font-size: 50px;}
+    .service .info {margin: 0 20px 30px;}
+    
+    .footer {margin: 25px 25px;}
+}
