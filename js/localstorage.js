@@ -41,6 +41,17 @@ function store(){
 //checking
 
 function getStorage(){
+
+    let dataShopify = {
+        name:localStorage.getItem('name')
+    }    
+    localStorage.setItem('dataShopify', JSON.stringify(dataShopify));
+
+    if(localStorage.getItem('dataShopify')){
+        console.log(true)
+    }
+    else{console.log(false)}
+    
     var storedEmail = localStorage.getItem('Email');
     var storedpass = localStorage.getItem('password');
     var erremf = document.querySelector(".error-contain");
@@ -78,7 +89,7 @@ function getStorage(){
         localStorage.setItem('dataShopify', JSON.stringify(dataShopify));
     
         if(localStorage.getItem('dataShopify')){
-            console.log(true)
+            console.log(true);
         }
         else{console.log(false)}
 
