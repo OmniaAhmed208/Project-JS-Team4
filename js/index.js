@@ -154,10 +154,7 @@ displayCard = () => {
                       <p class='fs-4' id='title'>${itemDataArrObj.title}</p>
                       <div class="d-flex flex-row justify-content-around">
                         <p> <span class='fw-bold'>Price </span><span id='price'>${itemDataArrObj.price} LE </span></p>
-                        <div class="d-flex flex-row justify-content-between">
-                          <i class="toCheckout btn" id="toCheckout" onclick="addItemToBill(${itemDataArrObj.id})">Confirm</i>
                           <i class="toTrash btn" id="toTrash" onclick="delItemFromCard(${itemDataArrObj.id});">Delete</i>
-                        </div>
                       </div>
                     </div>
                   </div>`;
@@ -177,45 +174,29 @@ function delItemFromCard(eleId){
   // catching "counter" element
   document.getElementById("counter").innerHTML = itemDataArr.length;
   toBeDeleted.remove();
+  return itemDataArr;
 }
 
 // Delete all items in shopping card
 function clearCard(){
   card.innerHTML = '';
   itemDataArr.length = 0;
-  billBodyArr.length = 0;
   localStorage.billBodyArr = '';
   return;
 }
 
         // ============= Filling Bill ===========
 
-// Add item to bill page
-const billBodyArr = [];
-
-function addItemToBill(eleId){
-  for(let i = 0; i < itemDataArr.length; i++){
-    if(eleId === itemDataArr[i].id){
-      if(billBodyArr.includes(itemDataArr[i])) {
-        return;
-      }
-      billBodyArr.push(itemDataArr[i]);
-      return itemDataArr[i];
-    }
-  }
-  return billBodyArr;
-}
-
-function saveConfirmedITems() {
-	localStorage.setItem('billBodyArr', JSON.stringify(billBodyArr));
-  if (JSON.parse(localStorage.getItem('billBodyArr'))) {
-    const billBodyArrLocal = JSON.parse(window.localStorage.getItem('billBodyArr'));
-    return billBodyArrLocal;
+function saveItemDataArr() {
+	localStorage.setItem('itemDataArr', JSON.stringify(itemDataArr));
+  if (JSON.parse(localStorage.getItem('itemDataArr'))) {
+    const itemDataArrLocal = JSON.parse(window.localStorage.getItem('itemDataArr'));
+    return itemDataArrLocal;
   }
 }
 
 if(window.onload){
-  localStorage.billBodyArr = '';
+  localStorage.itemDataArr = '';
 }
 
 const cardArr = [];
@@ -224,18 +205,19 @@ var bill = document.querySelector('#tbody');
 // Adding items data to bill table after clicking "Confirm" button in the card popup
 let billBody = ``;
 function displayBill(){
-  if(!billBodyArr || !JSON.parse(localStorage.billBodyArr) || !loginAccepted){return;}
-  for (let i = 0; i < JSON.parse(localStorage.billBodyArr).length; i++) {
-    billBody = `<tr class='billRecord w-100'>
+  if(!itemDataArr || !JSON.parse(localStorage.itemDataArr) || !loginAccepted){return;}
+  for (let i = 0; i < JSON.parse(localStorage.itemDataArr).length; i++) {
+    billBody = `<tr>
+                  <span class='itemTitle'><strong>Item ${i}:</strong><small>${JSON.parse(localStorage.itemDataArr)[i].title}.</small></span>
+                  </tr><tr class='billRecord w-100'>
                   <td class='col' id='itemCell'>
-                    <img class='itemImgSm' src='${JSON.parse(localStorage.billBodyArr)[i].image}'>
-                    <span class='itemTitle'><small>${JSON.parse(localStorage.billBodyArr)[i].title}</small></span>
+                    <img class='itemImgSm' src='${JSON.parse(localStorage.itemDataArr)[i].image}'>
                   </td>
-                  <td class='col' id='unitPriceCell_${i}'>${JSON.parse(localStorage.billBodyArr)[i].price}</td>
+                  <td class='col' id='unitPriceCell_${i}'>${JSON.parse(localStorage.itemDataArr)[i].price}</td>
                   <td class='col' id='qtyCell'>
-                    <button class='incDec' id='plus' onclick="plusItem(${i})">&plus;</button>
+                    <button class='incDec' id='plus' onclick="plusItem(${i}); priceCalc(${i});">&plus;</button>
                     <input class='itemQty' id='itemQty_${i}' type='number' value='1' min='0'>
-                    <button class='incDec' id='minus' onclick="minusItem(${i})">&minus;</button>
+                    <button class='incDec' id='minus' onclick="minusItem(${i}); priceCalc(${i});">&minus;</button>
                   </td>
                   <td class='priceCell col' id='priceCell_${i}'></td>
                 </tr>`;
@@ -264,23 +246,31 @@ function minusItem(id){
 
 const priceArr = [];
 // price calculation after adding item number (itemQty)
-function priceCalc(){
-  for (let i = 0; i < JSON.parse(localStorage.billBodyArr).length; i++) {
+function priceCalc(i){
+  // for (i = 0; i < JSON.parse(localStorage.billBodyArr).length; i++) {
     let priceCell = document.querySelector(`#priceCell_${i}`);
     let unitPrice = Number(document.querySelector(`#unitPriceCell_${i}`).innerHTML);
     let itemQty = Number(document.querySelector(`#itemQty_${i}`).value);
     var priceCellValue = unitPrice * itemQty;
     priceCell.innerHTML = priceCellValue;
     return priceCellValue;
-  }
+  // }
   priceArr.push(priceCellValue);
+  // for (i = 0; i < JSON.parse(localStorage.billBodyArr).length; i++) {
+  //   let priceCell = document.querySelector(`#priceCell_${i}`);
+  //   let unitPrice = Number(document.querySelector(`#unitPriceCell_${i}`).innerHTML);
+  //   let itemQty = Number(document.querySelector(`#itemQty_${i}`).value);
+  //   var priceCellValue = unitPrice * itemQty;
+  //   priceCell.innerHTML = priceCellValue;
+  //   return priceCellValue;
+  // }
+  // priceArr.push(priceCellValue);
   // for(let j = 0; j < priceArr.length; j++){
   //   let itemsBillContainer = document.querySelector(".tbody");
   //   let itemRows = itemsBillContainer.querySelector(".billRecord");
   //   let priceCell = document.querySelector(`#priceCell_${j}`);
   //   priceCell.innerHTML = priceCellValue;
   // }
-  console.log('hi');
 }
 
 // Total price Calculations
@@ -297,13 +287,13 @@ function totalPriceEqu(){
 
 if(window.location.href.match('bill.html')){
   displayBill();
-  // priceCalc();
+  priceCalc();
   totalPriceEqu();
 }
 
 function checkoutReceipt(){
   alert(`Hello mr/mrs ${localStorage.name} \n
-         Total items number: ${JSON.parse(localStorage.billBodyArr).length} \n
+         Total items number: ${JSON.parse(localStorage.itemDataArr).length} \n
          Cash: ${total.innerHTML} \n
          Thank you for your purchase!
       `);
