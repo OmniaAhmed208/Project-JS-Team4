@@ -226,7 +226,9 @@ body{background-color: rgba(214,214,214);}
     position: fixed;
     background-color: #fff;
     padding: 60px 30px 60px 30px;
-    transform: translate(100%,130%);
+    /* transform: translate(100%,130%); */
+    left: 30%;
+    top: 40%;
 }
 .loginBefore .popupLogin i{
     position: absolute;
@@ -253,6 +255,12 @@ body{background-color: rgba(214,214,214);}
     bottom: 20px;
     border-radius: 5px;
 }
+
+/* ============= modal=========== */
+
+.modal-body img{height: 300px;margin: auto;}
+.modal-body p:nth-of-type(1){font-weight: bold;}
+
 /* ================= footer ============ */
 .footer{
     margin: 25px 50px;
