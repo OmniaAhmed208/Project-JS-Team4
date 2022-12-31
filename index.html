@@ -35,15 +35,16 @@
               </li>
             </ul>
             <form class="d-flex" role="search">
-<<<<<<< HEAD
-<<<<<<< HEAD
               <button class="btn" id="loginBtn" type="submit"><a href="pages/login.html">Login</a></button>
-=======
-              <button class="btn" id="loginBtn" type="submit"><a href="/pages/login.html">Login</a></button>
->>>>>>> 5c7ca9f95d9a83699159c4e5cb8df5638beb62bc
-=======
-              <button class="btn" id="loginBtn" type="submit"><a href="pages/login.html">Login</a></button>
->>>>>>> 08c176814ced440697731609dc2eca28106e3834
+             
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" id="loginName" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+              </div>
+
             </form>
           </div>
         </div>
@@ -170,6 +171,13 @@
         </div>
       </div>
 
+      <div class="loginBefore">
+        <div class="popupLogin">
+          <i class="fa fa-close"></i>
+          <h2>You Should Login before buy any Product</h2>
+          <button class="btn" id="loginBtn" type="submit"><a href="pages/login.html">Login</a></button>
+        </div>
+      </div>
       <!-- ============= footer =============== -->
       <div class="footer">
         <div class="container">
@@ -229,12 +237,40 @@
 
     <script src="js/bootstrap.min.js"></script>  
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
-<<<<<<< HEAD
-    <script src="js/index.js"></script>  
-    <!-- <script src="js/cardPayment.js"></script> -->
-=======
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script> 
     <script src="js/index.js"></script>
->>>>>>> ade3dd0854d4a7a5b2efc61af65d26b1f6f0476d
+    <script>
+
+    // login
+    let arrLogin=[];
+    let loginBtn = document.querySelector('.navbar #loginBtn');
+    let myName = document.querySelector('.navbar #loginName');
+    let logOut = document.querySelector('.navbar .dropdown-menu');
+
+    logOut.addEventListener('click',function(){
+      loginBtn.style.display = 'block';
+      myName.style.display = 'none'; 
+      localStorage.removeItem('dataShopify')
+    })
+      
+
+    checkLogin()
+    function checkLogin(){
+      if(localStorage.getItem('dataShopify')){
+        loginBtn.style.display = 'none';
+        myName.style.display = 'block';
+        arrLogin.push(JSON.parse(localStorage.getItem('dataShopify')).name)
+        myName.innerHTML = arrLogin[0][0];
+      }
+      else{
+        loginBtn.style.display = 'block';
+        myName.style.display = 'none'
+      }
+    }
+
+    document.querySelector('.loginBefore i').addEventListener('click',()=>{
+      document.querySelector('.loginBefore').style.display = 'none';
+    })
+    </script>
 </body>
 </html>

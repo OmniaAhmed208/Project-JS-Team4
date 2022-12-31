@@ -1,4 +1,5 @@
 let arr;
+
 let data = function(apiLink){
             return new Promise((res,rej)=>{
                 let myReq = new XMLHttpRequest();
@@ -122,7 +123,12 @@ function itemDatastoring(itemIndex){
   }
   itemDataArr.push(arr[itemIndex]);
   // catching "counter" element
-  document.getElementById("counter").innerHTML = itemDataArr.length;
+  if(localStorage.getItem('dataShopify')){
+    document.getElementById("counter").innerHTML = itemDataArr.length;
+  }
+  if(!localStorage.getItem('dataShopify')){
+    document.querySelector('.loginBefore').style.display = 'block';
+  }
   return itemIndex, itemDataArr;
 }
 
@@ -130,9 +136,10 @@ function itemDatastoring(itemIndex){
 let displayUserData = () => {
   let cardHeaderContent = ``;
   let cardHeader = document.querySelector('.cardHeaderUserData, .billHeaderUserData');
+  // <span class='d-flex'>E-mail: ${localStorage.email}</span>
+
   cardHeaderContent = `<div class='container flex-row'>
-                          <span class='d-flex'>Card Holder: ${localStorage.name}</span>
-                          <span class='d-flex'>E-mail: ${localStorage.email}</span>
+                          <span class='d-flex'>Card Holder: &nbsp;<span style="font-weight:bold"> ${localStorage.name}<span></span>
                         </div>`;
   cardHeader.innerHTML = cardHeaderContent;
 }
@@ -143,6 +150,8 @@ if(loginAccepted = true){   // loginAccepted should be a boolean in login functi
 // Adding items data after clicking "Add to Card" button
 let cardBody = ``;
 displayCard = () => {
+  if(localStorage.getItem('dataShopify')){
+
   if(!itemDataArr || !loginAccepted){return;}
   let card = document.getElementById('card');
   for (let i = 0; i < itemDataArr.length; i++) {
@@ -160,6 +169,7 @@ displayCard = () => {
       card.innerHTML = cardBody;
   }
   return cardBody;
+  }
 }
 
 // Delete item from shopping card
@@ -203,17 +213,23 @@ var bill = document.querySelector('#tbody');
 
 // Adding items data to bill table after clicking "Confirm" button in the card popup
 let billBody = ``;
+const priceArr = [];
+let priceArrOriginal=[];
+
 function displayBill(){
   if(!itemDataArr || !JSON.parse(localStorage.itemDataArr) || !loginAccepted){return;}
+  // <span class='itemTitle'><strong>Item ${i}:</strong><small>${JSON.parse(localStorage.itemDataArr)[i].title}.</small></span>
+
   for (let i = 0; i < JSON.parse(localStorage.itemDataArr).length; i++) {
     billBody = `<tr>
-                  <span class='itemTitle'><strong>Item ${i}:</strong><small>${JSON.parse(localStorage.itemDataArr)[i].title}.</small></span>
                   </tr><tr class='billRecord w-100'>
                   <td class='col' id='itemCell'>
                     <img class='itemImgSm' src='${JSON.parse(localStorage.itemDataArr)[i].image}'>
+                    <span class='itemTitle'><small>${JSON.parse(localStorage.itemDataArr)[i].title}</small></span>
+                  
                   </td>
-                  <td class='col' id='unitPriceCell_${i}'>${JSON.parse(localStorage.itemDataArr)[i].price}</td>
-                  <td class='col' id='qtyCell'>
+                  <td class='col unitPrice' id='unitPriceCell_${i}'>${JSON.parse(localStorage.itemDataArr)[i].price}</td>
+                  <td class='col qtyPrice' id='qtyCell'>
                     <button class='incDec' id='plus' onclick="plusItem(${i}); priceCalc(${i});">&plus;</button>
                     <input class='itemQty' id='itemQty_${i}' type='number' value='1' min='0'>
                     <button class='incDec' id='minus' onclick="minusItem(${i}); priceCalc(${i});">&minus;</button>
@@ -222,28 +238,100 @@ function displayBill(){
                 </tr>`;
     bill.innerHTML += billBody;
   }
+console.log((JSON.parse(localStorage.itemDataArr).length))
+  for (let i = 0; i < JSON.parse(localStorage.itemDataArr).length; i++) {
+    let qtyPrice = document.querySelector(`#priceCell_${i}`);
+    let priceProduct = Number(document.querySelector(`#unitPriceCell_${i}`).innerHTML);
+
+    qtyPrice.innerHTML = priceProduct;
+    priceArr.push(qtyPrice.innerHTML);    
+    priceArrOriginal.push(qtyPrice.innerHTML)
+  }
+  
+  let total =0
+  for(let i=0; i<priceArrOriginal.length;i++){
+    console.log(+(priceArrOriginal[i]))
+    total += (+priceArrOriginal[i]); 
+  }
+  console.log(+total);
+  document.querySelector('#totalPrice').innerHTML = total.toFixed(2);
+  
   return billBody, bill;
 }
 
 // // Table cells equations  // //
 
 // increase the number of items for the same product
-function plusItem(id){
-  var value = parseInt(document.getElementById(`itemQty_${id}`).value, 10);
-  value = isNaN(value) ? 0 : value;
-  value++;
-  document.getElementById(`itemQty_${id}`).value = value;
+function plusItem(i){
+  let qtyPrice = document.querySelector(`#priceCell_${i}`);
+
+    let priceProduct = Number(document.querySelector(`#unitPriceCell_${i}`).innerHTML);
+    let itemQty = Number(document.querySelector(`#itemQty_${i}`).value);
+    var qtyTotal = priceProduct * itemQty;
+    qtyPrice.innerHTML = qtyTotal;
+    itemQty++;
+    itemQty.innerHtml = itemQty;
+    qtyTotal = priceProduct * itemQty;
+    qtyPrice.innerHTML = qtyTotal;
+
+    var value = parseInt(document.getElementById(`itemQty_${i}`).value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+
+    document.getElementById(`itemQty_${i}`).value = value;
+    document.querySelector('#totalPrice').innerHTML =  itemQty * priceProduct;
+
+    console.log(itemQty)
+    console.log(`original ${priceArrOriginal[i]}`);
+    console.log(`new ${priceArr[i]}`)
+    let add = itemQty * priceArrOriginal[i];
+    console.log(add);
+    priceArr[i] = add;
+    console.log(priceArr)
+    let total = 0;
+
+    for(let i=0;i<priceArr.length;i++){
+      total += +(priceArr[i])
+    }
+    console.log(total);
+    document.querySelector('#totalPrice').innerHTML =  total.toFixed(2);
 }
 // decrease the number of items for the same product
-function minusItem(id){
-  var value = parseInt(document.getElementById(`itemQty_${id}`).value, 10);
-  value = isNaN(value) ? 0 : value;
-  value < 1 ? value = 1 : '';
-  value--;
-  document.getElementById(`itemQty_${id}`).value = value;
+function minusItem(i){
+  let qtyPrice = document.querySelector(`#priceCell_${i}`);
+
+    let priceProduct = Number(document.querySelector(`#unitPriceCell_${i}`).innerHTML);
+    let itemQty = Number(document.querySelector(`#itemQty_${i}`).value);
+    var qtyTotal = priceProduct * itemQty;
+    qtyPrice.innerHTML = qtyTotal;
+    itemQty--;
+      itemQty.innerHtml = itemQty;
+      qtyTotal = priceProduct * itemQty;
+      qtyPrice.innerHTML = qtyTotal;
+
+      var value = parseInt(document.getElementById(`itemQty_${i}`).value, 10);
+      value = isNaN(value) ? 0 : value;
+      value--;
+
+      document.getElementById(`itemQty_${i}`).value = value;
+      document.querySelector('#totalPrice').innerHTML =  itemQty * priceProduct;
+
+      console.log(itemQty)
+      console.log(`original ${priceArrOriginal[i]}`);
+      console.log(`new ${priceArr[i]}`)
+      let add = itemQty * priceArrOriginal[i];
+      console.log(add);
+      priceArr[i] = add;
+      console.log(priceArr)
+      let total = 0;
+  
+      for(let i=0;i<priceArr.length;i++){
+        total += +(priceArr[i])
+      }
+      console.log(total);
+      document.querySelector('#totalPrice').innerHTML =  total.toFixed(2);
 }
 
-const priceArr = [];
 // price calculation after adding item number (itemQty)
 function priceCalc(i){
   // for (i = 0; i < JSON.parse(localStorage.billBodyArr).length; i++) {
@@ -255,21 +343,6 @@ function priceCalc(i){
     return priceCellValue;
   // }
   priceArr.push(priceCellValue);
-  // for (i = 0; i < JSON.parse(localStorage.billBodyArr).length; i++) {
-  //   let priceCell = document.querySelector(`#priceCell_${i}`);
-  //   let unitPrice = Number(document.querySelector(`#unitPriceCell_${i}`).innerHTML);
-  //   let itemQty = Number(document.querySelector(`#itemQty_${i}`).value);
-  //   var priceCellValue = unitPrice * itemQty;
-  //   priceCell.innerHTML = priceCellValue;
-  //   return priceCellValue;
-  // }
-  // priceArr.push(priceCellValue);
-  // for(let j = 0; j < priceArr.length; j++){
-  //   let itemsBillContainer = document.querySelector(".tbody");
-  //   let itemRows = itemsBillContainer.querySelector(".billRecord");
-  //   let priceCell = document.querySelector(`#priceCell_${j}`);
-  //   priceCell.innerHTML = priceCellValue;
-  // }
 }
 
 // Total price Calculations
@@ -285,16 +358,26 @@ function totalPriceEqu(){
 }
 
 if(window.location.href.match('bill.html')){
+  if(localStorage.getItem('dataShopify')){
   displayBill();
   priceCalc();
   totalPriceEqu();
+  }
 }
 
+let total = document.querySelector('#totalPrice').innerHTML;
+
 function checkoutReceipt(){
-  alert(`Hello mr/mrs ${localStorage.name} \n
-         Total items number: ${JSON.parse(localStorage.itemDataArr).length} \n
-         Cash: ${total.innerHTML} \n
-         Thank you for your purchase!
-      `);
+  document.querySelector('body').style.cssText = 'overflow-y: hidden;';
+
+  let popup = document.querySelector('.layout');
+  popup.style.display = 'block';
+  let name = document.querySelector('.popup .name');
+  let number = document.querySelector('.popup .number');
+  let price = document.querySelector('.popup .price');
+  name.innerHTML = `${localStorage.name}`;
+  number.innerHTML = `${JSON.parse(localStorage.itemDataArr).length}`;
+  price.innerHTML = `${document.querySelector('#totalPrice').innerHTML} LE`;
+  
   localStorage.itemIdArr = '';
 }

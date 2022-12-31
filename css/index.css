@@ -36,6 +36,25 @@ body{background-color: rgba(214,214,214);}
     padding:6px 15px;
 }
 
+.navbar #loginName{
+    background-color: #cc4d5a;
+    border-radius: 50%;
+    font-size: 15px;
+    border: 0;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 10px;
+}
+
+.navbar .dropdown ul{padding: 0;margin: 4px -15px;--bs-dropdown-min-width: 5rem;}
+.navbar .dropdown ul li{margin-right: 0;}
+.navbar .dropdown ul li a{
+    font-size: 15px;
+    text-align: center;
+    padding: 6px 0;
+    margin: 0;
+}
+
 /* ========= about ========== */
 .about{
     margin: 25px 50px;
@@ -95,7 +114,13 @@ body{background-color: rgba(214,214,214);}
 
 #card{
   max-height: 300px;
-  overflow: scroll;
+  overflow-y: scroll;
+}
+
+#card i{
+    background: #cc4d5a;
+    margin: -4px 0 14px 0;
+    color: #fff;
 }
 
 .toTrash:hover{
@@ -187,6 +212,47 @@ body{background-color: rgba(214,214,214);}
 
 .products .inner-div span{font-size: 17px;font-weight: 600;}
 
+.loginBefore{
+    background-color: #2224298f;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: none;
+}
+.loginBefore .popupLogin{
+    position: fixed;
+    background-color: #fff;
+    padding: 60px 30px 60px 30px;
+    transform: translate(100%,130%);
+}
+.loginBefore .popupLogin i{
+    position: absolute;
+    top: 15px;
+    font-size: 22px;
+    right: 15px;
+    cursor: pointer;
+}
+.loginBefore .popupLogin h2{
+    font-size: 23px;
+    font-weight: bold;
+    font-family: 'Oswald', cursive;
+}
+.loginBefore .popupLogin button a{
+    background-color: #cc4d5a;
+    font-family: 'Oswald', cursive;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 21px;
+    padding: 5px 35px;
+    position: absolute;
+    right: 27px;
+    bottom: 20px;
+    border-radius: 5px;
+}
 /* ================= footer ============ */
 .footer{
     margin: 25px 50px;

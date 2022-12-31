@@ -1,16 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Leckerli+One&family=Open+Sans:wght@300&family=Oswald:wght@200;300;400;600&family=Playball&family=Raleway:wght@800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Leckerli+One&family=Lobster&family=Open+Sans:wght@300&family=Oswald:wght@200;300;400;600&family=Playball&family=Raleway:wght@800&display=swap'); 
 
-body{background-color: rgba(214,214,214);}
-
+body{background-color: rgba(214,214,214);position: relative;}
 .navbar .navbar-collapse{flex-grow: 0;}
-
 .navbar{padding: 0; margin: -14px 0;}
-
 .navbar-brand{display: flex;}
-
 .navbar .navbar-brand img{width: 120px;height: 100px;}
-
 .navbar .navbar-brand .brand{
     margin-top: 30px;
     font-size: 32px;
@@ -19,94 +14,94 @@ body{background-color: rgba(214,214,214);}
     color: #274f73;
     font-family: 'Oswald', cursive;
 }
-.navbar ul
-
-.image{display: flex;justify-content: center;align-items: center;margin-top: 30px;}
-
-.email{display: flex;justify-content: center;}
-
-.log{
+.layoutBill .layout{
+    background-color: #00000094;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.layoutBill .popup{
+    position:fixed;
+    top: 0;
+    left: 0;
+    padding: 50px 100px;
+    background-color: #fff;
+    transform: translate(100%,30%);
+}
+.layoutBill .layout .popup h4{font-family: 'Oswald', cursive;margin: 20px 0;}
+.layoutBill .layout .popup h2{font-family: 'Oswald', cursive;}
+.layoutBill .layout span{font-weight: bold;}
+.layoutBill .layout button{background-color: #cc4d5a;border: none;outline: none;padding: 10px 40px;}
+.layoutBill .layout button a{
+    font-family: 'Oswald', cursive;
+    font-size: 20px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+.all{position: relative;}
+.all .image{display: flex;justify-content: center;align-items: center;margin-top: 30px;}
+.all .image img {position: absolute;right: 9px;top: -87px;width: 41%;transform: rotate(0);}
+.all .email{display: flex;justify-content: center;}
+.all .log{
     margin-top: 40px;
-    width: 500px; height: 450px;
-    padding-bottom: 10px;
+    padding: 0 35px;
+    width: 100%;
     border-radius: 9px;
     background-color: rgba(214,214,214);
     box-shadow: 5px 5px 10px #b6a9a9, -5px -5px 10px #fff;
-    position: relative;
 }
-
-th, td {
-    width: 25%;
-    text-align: left;
-    vertical-align: middle;
-}
-
-#billHeader{
-    position: absolute;
-    width: 100%;
-    top: 0;
-}
-
-.thead{
-    display:table-header-group;
-}
-
 #bill{
-    position: absolute;
-    height: 62%;
-    max-height: 300px;
     width: 100%;
-    top:100px;
+    top: 100px;
+    background: #fff;
+    border-radius: 9px;
+    padding: 40px;
+    font-family: 'Oswald', cursive;
+    box-shadow: 5px 5px 10px #b6a9a9,-5px -5px 10px #fff;
 }
-
-#tbody{
-    background-color:#ddd;
-    position: absolute;
-    height: 70%;
-    width: 100%;
-    overflow-y: scroll;
-}
-
-.itemImgSm{
-    width: 50px;
-    height: 50px;
-}
-
-#plus{
-    background: none;
-    border: none;
-}
-#plus:hover{
-    color: #4dcc68;
-}
-
-#minus{
-    background: none;
-    border: none;
-}
-#minus:hover{
-    color: #cc4d5a;
-}
-
-.tfoot{
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-}
-
-#billFooter{
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-}
-
-#qtyCell {
-    margin: 0 auto;
+#billHeader{width: 100%;top: 0;}
+.billHeaderUserData{font-size: 22px;font-weight: bold;font-family: 'Oswald';margin-bottom: 30px;}
+#billHeader h2{margin: 70px 0 33px;font-weight: bold;font-family: 'Charm', cursive;font-size: 70px;}
+#tbody{height: 70%;width: 100%;}
+.thead{
     text-align: center;
-    vertical-align: middle;
-    right: 50px;
+    font-size: 2;
+    font-weight: bold;
+    align-items: center;
+    display: contents;
 }
+.thead td{padding:20px}
+#itemCell{width: 40%;}
+.itemImgSm{width: 60%;display: flex;}
+.itemTitle{font-weight: bold;font-size: 18px;}
 
+.billRecord .unitPrice,.billRecord .priceCell {font-weight: bold;padding: 10% 0 0;font-size: 20px;}
+.billRecord .qtyPrice input{
+    text-align: center;
+    border: none;
+    outline: none;
+    margin: 17% 0;
+    width: 13%;
+    height: 40px;
+    font-weight: bold;
+    font-size: 26px;
+    background: #d6d6d6;
+    border-radius: 5px;
+    box-shadow: inset 5px 5px 10px #b6a9a9,inset -5px -5px 10px #fff;
+}
+.billRecord .qtyPrice button{background: none;border: none;font-size: 28px;}
+#plus{background: none;border: none;}
+#plus:hover{color: #e96675;}
+
+#minus{background: none;border: none;}
+#minus:hover{color: #cc4d5a;}
+.tfoot{width: 100%;bottom: 0;font-size: 30px;font-weight: bold;}
+#billFooter{width: 100%;bottom: 0;}
+#qtyCell {width: 100%;height: 100%;margin: 0 auto;text-align: center;}
 .incDec {
     display: inline-block;
     border: 1px solid #ddd;
@@ -119,10 +114,8 @@ th, td {
     padding: 11px 0;
     background: #eee;
 }
-
 .itemQty {
     text-align: center;
-    vertical-align: middle;
     border: none;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -130,9 +123,5 @@ th, td {
     width: 40px;
     height: 25px;
 }
-
 input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
+input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none;margin: 0;}

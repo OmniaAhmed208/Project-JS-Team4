@@ -17,11 +17,18 @@
 
  })
 
-
-
-
 //  storing data
 function store(){
+
+    let dataShopify = {
+        name:localStorage.getItem('name')
+    }    
+    localStorage.setItem('dataShopify', JSON.stringify(dataShopify));
+
+    if(localStorage.getItem('dataShopify')){
+        console.log(true)
+    }
+    else{console.log(false)}
 
     var name = document.getElementById('name').value;
     var mail = document.getElementById('mail').value;
