@@ -50,3 +50,69 @@
             document.getElementById('userData').innerHTML = '<h2>Facebook Profile Details</h2><p><img src="'+response.picture.data.url+'"/></p><p><b>FB ID:</b> '+response.id+'</p><p><b>Name:</b> '+response.first_name+' '+response.last_name+'</p><p><b>Email:</b> '+response.email+'</p><p><b>Gender:</b> '+response.gender+'</p><p><b>FB Profile:</b> <a target="_blank" href="'+response.link+'">click to view profile</a></p>';
         });
     }
+
+
+//googel sing in function
+
+    var googleUser = {};
+    var startApp = function() {
+      gapi.load('auth2', function(){
+        // Retrieve the singleton for the GoogleAuth library and set up the client.
+        auth2 = gapi.auth2.init({
+          client_id: 'YOUR_CLIENT_ID.apps.googleusercontent.com',
+          cookiepolicy: 'single_host_origin',
+          // Request scopes in addition to 'profile' and 'email'
+          //scope: 'additional_scope'
+        });
+        attachSignin(document.getElementById('customBtn'));
+      });
+    };
+  
+    function attachSignin(element) {
+      console.log(element.id);
+      auth2.attachClickHandler(element, {},
+          function(googleUser) {
+            document.getElementById('name').innerText = "Signed in: " +
+                googleUser.getBasicProfile().getName();
+          }, function(error) {
+            alert(JSON.stringify(error, undefined, 2));
+          });
+    }
+
+    // function onSuccess(googleUser) {
+    //     console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    //   }
+    //   function onFailure(error) {
+    //     console.log(error);
+    //   }
+    //   function renderButton() {
+    //     gapi.signin2.render('my-signin2', {
+    //       'scope': 'profile email',
+    //       'width': 240,
+    //       'height': 50,
+    //       'longtitle': true,
+    //       'theme': 'dark',
+    //       'onsuccess': onSuccess,
+    //       'onfailure': onFailure
+    //     });
+    //   }
+
+    // const clientLoad = new Promise(resolve => {
+    //     gapi.load('auth2', () => {
+    //       resolve(gapi.auth2.init({ client_id: '<your_client_id>' }));
+    //     });
+    //   });
+      
+    //   async function login() {
+    //     const client = await clientLoad;
+    //     const response = client.signIn().catch((e) => {
+    //       // in case user closes the popup
+    //       if (e.error === 'popup_closed_by_user') {
+    //         return null;
+    //       }
+    //       throw e;
+    //     });
+      
+    //     // handle your authentication flow with the token received
+    //     console.log(response.getAuthResponse());
+    //   }

@@ -83,7 +83,28 @@ body{background-color: rgba(214,214,214);}
 .service .info img{width: 150px;height: 150px;}
 
 .service .info p{font-size: 15px;font-weight: bold;}
+/* ========= shopping card ============ */
+#addToCard{
+  position: relative;
+}
 
+#addToCard:hover{
+  box-shadow: 5px 5px 10px #b6a9a9, -5px -5px 10px #fff;
+  border-radius: 6px;
+}
+
+#card{
+  max-height: 300px;
+  overflow: scroll;
+}
+
+.toCheckout:hover{
+  color: #4dcc68;
+}
+
+.toTrash:hover{
+  color: #cc4d5a;
+}
 /* ========= products ============ */
 .products .filter form{margin-bottom: 40px;justify-content: end;}
 

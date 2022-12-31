@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/cardPayment.css">
     <link rel="stylesheet" href="css/media.css">
+    <link rel="stylesheet" href="css/bill.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg">
@@ -64,7 +65,7 @@
             <button type="button" class="btn-close d-flex" data-bs-dismiss="modal" aria-label="Close"></button>
             <h4 class="d-flex">Shopping Card</h4>
           </div>
-          <div id="cardHeaderUserData">
+          <div class="cardHeaderUserData">
 
           </div>
         </div>
@@ -73,7 +74,7 @@
         </div>
         <div class="modal-footer d-flex flex-row justify-content-between">
           <button type="button" class="btn btn-outline-dark" id="clearBtn" onclick="clearCard()">Clear All</button>
-          <button type="button" class="btn btn-outline-dark" id="billBtn" onclick="window.location.href='bill.html';">Go to Bill Page</button>
+          <button type="button" class="btn btn-outline-dark" id="billBtn" onclick="window.location.href='bill.html'; saveConfirmedITems();">Go to Bill Page</button>
         </div>
       </div>
     </div>
@@ -150,7 +151,7 @@
                         </datalist>
                         <input onclick="displayData()" class="btn" type="button" value="Search">
                         <span class="image">
-                            <img src="img/cart.png"  id="addToCard" alt="cart" data-bs-toggle="modal" data-bs-target="#popUpCard">
+                            <img src="img/cart.png"  id="addToCard" alt="cart" onclick="displayCard()" data-bs-toggle="modal" data-bs-target="#popUpCard">
                             <div class="counter" id="counter">0</div>
                         </span>
                     </form>
@@ -221,7 +222,11 @@
     <script src="js/bootstrap.min.js"></script>  
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+<<<<<<< HEAD
     <script src="js/index.js"></script>  
     <!-- <script src="js/cardPayment.js"></script> -->
+=======
+    <script src="js/index.js"></script>
+>>>>>>> ade3dd0854d4a7a5b2efc61af65d26b1f6f0476d
 </body>
 </html>
