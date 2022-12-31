@@ -98,10 +98,6 @@ body{background-color: rgba(214,214,214);}
   overflow: scroll;
 }
 
-.toCheckout:hover{
-  color: #4dcc68;
-}
-
 .toTrash:hover{
   color: #cc4d5a;
 }
