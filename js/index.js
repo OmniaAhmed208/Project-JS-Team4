@@ -311,6 +311,7 @@ function minusItem(i){
 
       var value = parseInt(document.getElementById(`itemQty_${i}`).value, 10);
       value = isNaN(value) ? 0 : value;
+      value < 1 ? value = 1 : '';
       value--;
 
       document.getElementById(`itemQty_${i}`).value = value;
@@ -332,17 +333,17 @@ function minusItem(i){
       document.querySelector('#totalPrice').innerHTML =  total.toFixed(2);
 }
 
-// price calculation after adding item number (itemQty)
+// price calculation after adding item number (itemQty)لهف 
 function priceCalc(i){
   // for (i = 0; i < JSON.parse(localStorage.billBodyArr).length; i++) {
     let priceCell = document.querySelector(`#priceCell_${i}`);
     let unitPrice = Number(document.querySelector(`#unitPriceCell_${i}`).innerHTML);
     let itemQty = Number(document.querySelector(`#itemQty_${i}`).value);
     var priceCellValue = unitPrice * itemQty;
-    priceCell.innerHTML = priceCellValue;
+    priceCell.innerHTML = priceCellValue.toFixed(2);
     return priceCellValue;
   // }
-  priceArr.push(priceCellValue);
+  // priceArr.push(priceCellValue);
 }
 
 // Total price Calculations
