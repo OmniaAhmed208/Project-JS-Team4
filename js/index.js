@@ -299,11 +299,12 @@ function plusItem(i){
 }
 // decrease the number of items for the same product
 function minusItem(i){
-  let qtyPrice = document.querySelector(`#priceCell_${i}`);
+    let qtyPrice = document.querySelector(`#priceCell_${i}`);
 
     let priceProduct = Number(document.querySelector(`#unitPriceCell_${i}`).innerHTML);
     let itemQty = Number(document.querySelector(`#itemQty_${i}`).value);
     var qtyTotal = priceProduct * itemQty;
+    if(itemQty >= 0)
     qtyPrice.innerHTML = qtyTotal;
     itemQty--;
       itemQty.innerHtml = itemQty;
@@ -320,11 +321,13 @@ function minusItem(i){
 
       console.log(itemQty)
       console.log(`original ${priceArrOriginal[i]}`);
-      console.log(`new ${priceArr[i]}`)
+      console.log(`new ${priceArr[i]}`);
+      
+      // console.log()
       let add = itemQty * priceArrOriginal[i];
       console.log(add);
       priceArr[i] = add;
-      console.log(priceArr)
+      console.log(priceArr);
       let total = 0;
   
       for(let i=0;i<priceArr.length;i++){
@@ -332,6 +335,10 @@ function minusItem(i){
       }
       console.log(total);
       document.querySelector('#totalPrice').innerHTML =  total.toFixed(2);
+
+      if(document.querySelector('#totalPrice').innerHTML == 0){
+        document.querySelector('#minus').style.cssText = 'pointer-events: none'
+      }
 }
 
 // price calculation after adding item number (itemQty)لهف 
