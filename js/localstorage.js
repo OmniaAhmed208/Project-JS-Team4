@@ -41,6 +41,17 @@ function store(){
 //checking
 
 function getStorage(){
+
+    let dataShopify = {
+        name:localStorage.getItem('name')
+    }    
+    localStorage.setItem('dataShopify', JSON.stringify(dataShopify));
+
+    if(localStorage.getItem('dataShopify')){
+        console.log(true)
+    }
+    else{console.log(false)}
+    
     var storedEmail = localStorage.getItem('Email');
     var storedpass = localStorage.getItem('password');
     var erremf = document.querySelector(".error-contain");
@@ -71,6 +82,18 @@ function getStorage(){
 
 // forget pass
     function forgetpass() {
+
+        let dataShopify = {
+            name:localStorage.getItem('name')
+        }    
+        localStorage.setItem('dataShopify', JSON.stringify(dataShopify));
+    
+        if(localStorage.getItem('dataShopify')){
+            console.log(true);
+        }
+        else{console.log(false)}
+
+        
         var redirect = false;
         var localmail =localStorage.getItem('Email');
         var forgetpas = document.getElementById('fpass');
@@ -84,23 +107,7 @@ function getStorage(){
         document.querySelector('.Forget').style.display ="block";
         document.getElementById("mySubmit").value = "Change Password"; 
         localStorage.setItem('password', forgetpas.value);
-        // if(forgetpas.value != "" ){
-        //     popopen();
-        //       redirect=true ; 
-        // }
-       
+        
      }
-        // if(redirect){
-        //     setTimeout(  function () {  window.location.href="/index.html"} , 2000);
-        // }
 
     }
-
- // popup fun
-//  function popopen(){
-//     document.getElementById('pop').style.display="block";
-    
-// }
-// function popclose(){
-//     document.getElementById('pop').style.display="none" ;
-// }

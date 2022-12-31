@@ -128,6 +128,7 @@ function itemDatastoring(itemIndex){
   }
   if(!localStorage.getItem('dataShopify')){
     document.querySelector('.loginBefore').style.display = 'block';
+    // document.querySelector('#addToCardBtn').classList.add('added')
   }
   return itemIndex, itemDataArr;
 }
