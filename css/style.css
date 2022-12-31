@@ -176,11 +176,23 @@ a.facebook {
     background-color: #4267b2;
     color: #fff;
 }
+a.googel {
+   background-color: rgba(240, 50, 50);
+   color: #fff;
+}
+a.googel:hover {
+   background-color: red;
+   cursor: pointer;
+text-decoration: none;
+   color: #fff;
+}
+
 a.facebook:hover{
     text-decoration: none;
     cursor:pointer;
     background-color: blue;
     border-bottom: 2px;
+    color: white;
 }
 
  a.facebook .facebook-icon {
