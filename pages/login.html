@@ -9,16 +9,44 @@
     <title>Document</title>
     <!---css-->
     <link rel="stylesheet" href="../css/style.css ">
-    <!-- <link rel="stylesheet" href="/css/bill.css"> -->
-    <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
     <!-- Boxicons CSS -->
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-        <!-- <nav>
-            <a href="/index.html" class="brand" ><img src="/img/logo.png" alt=""   width="120px" height="100px" ><span >spotify</span></a>
-        </nav> -->
-    <section class="container formes">
+        <!------------------------ Navbar --------------------->
+
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+              <a class="navbar-brand" href="../index.html"><img src="../img/logo.png"><div class="brand">Shopify</div></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-right mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#product">Product</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                  </li>
+                </ul>
+                <form class="d-flex my-auto" role="search">
+                  <button class="btn" id="loginBtn" type="submit"><a href="../pages/login.html">Login</a></button>
+                </form>
+              </div>
+            </div>
+          </nav>
+        <!-- ------------------------End of navbar----------------------- -->
+    <section class="container1 formes">
             <div class="containerr">
               <img src="../img/log.png" alt="photo desigin" >
             </div>
@@ -71,7 +99,7 @@
                                     <div id="gSignInWrapper">
                                     <div id="customBtn" class="customGPlusSignIn filed googel ">
                                     <img src="../img/google_PNG19635.png" alt="" class="googel-img">
-                                    <!-- <i class='bx bxl-gmail facebook-icon ' style='color:#ff2626'  ></i> -->
+                                    <!--<i class='bx bxl-gmail facebook-icon ' style='color:#ff2626'  ></i>-->
                                 <span>Login With Gmail</span>
                                 </a>
                             </div>
@@ -80,7 +108,7 @@
                     </form>
                </div>
         </div>
-    </section>
+    </section> -->
     <script src="../js/localstorage.js" ></script>
     <script src="../js/facebook.js" ></script>
     <script>startApp();</script>
