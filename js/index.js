@@ -299,6 +299,7 @@ function plusItem(i){
 }
 // decrease the number of items for the same product
 function minusItem(i){
+  if(document.querySelector('#totalPrice').innerHTML > 0){
     let qtyPrice = document.querySelector(`#priceCell_${i}`);
 
     let priceProduct = Number(document.querySelector(`#unitPriceCell_${i}`).innerHTML);
@@ -335,10 +336,7 @@ function minusItem(i){
       }
       console.log(total);
       document.querySelector('#totalPrice').innerHTML =  total.toFixed(2);
-
-      if(document.querySelector('#totalPrice').innerHTML == 0){
-        document.querySelector('#minus').style.cssText = 'pointer-events: none'
-      }
+    }
 }
 
 // price calculation after adding item number (itemQty)لهف 
