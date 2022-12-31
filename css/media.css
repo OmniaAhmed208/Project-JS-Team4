@@ -4,12 +4,14 @@
     .about .info h1 {font-size: 70px;padding: 35px 60px 50px;}
     .service .info{margin-bottom: 25px;}
     .scroll{right: 60px;}
+    /* .loginBefore .popupLogin {transform: translate(71%,130%);} */
 }
 
-@media (max-width:767px) {
+@media (max-width:768px) {
     .about .info p{width: 100%;}
     .products .info{ margin: auto;width: 70%;}
     .products .filter form input[type='search'] {width:100%}
+    .loginBefore .popupLogin {left: 22%;}
 }
 
 @media (max-width: 576px){
@@ -37,7 +39,9 @@
     .products .filter form{flex-direction: column;}
     .products .filter form .btn{margin: 10px 0 22px;}
     .products .filter form span{margin-left: 0;}
-    
+
+    .loginBefore .popupLogin {left: 6%;margin: 26px;padding: 60px 20px 60px 22px;}
+
     .scroll {right: 20px}
     
     .footer .contact h4{padding: 20px 0 20px;}
@@ -64,4 +68,7 @@
     .service .info {margin: 0 20px 30px;}
     
     .footer {margin: 25px 25px;}
+
+    .modal-body p {font-size: 14px;}
+
 }
